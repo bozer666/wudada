@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta id="viewport" name="viewport" content="width=540,user-scalable=no,target-densitydpi=high-dpi">
+	<script src="js/require.js"></script>
+	<title>一个都不能死</title>
+	<style type="text/css">
+	body{
+		margin:0px;
+		padding:0px;
+		overflow: hidden;
+	}
+	</style>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+	<audio  src="http://music.163.com/song/media/outer/url?id=514055481.mp3" autoplay="autoplay" loop="loop" id="bgAudio"></audio>
+    <div style="text-align:center;">
+		<canvas id="linkScreen" width="1366" height="621" style="width: 1366px; height: 621px;">
+		</canvas>
+	</div>
+	<script th:inline="javascript">
+		var BASE_URL=[[${application.BASE_URL}]]
+		$(function(){
+			$("#bgAudio")[0].volume = 0.3;
+		})
+	</script>
+</body>
+</html>

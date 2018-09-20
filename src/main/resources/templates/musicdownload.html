@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>网易云音乐下载</title>
+</head>
+<body>
+	<form action="/mp3Download" method="post" onsubmit="return one()">
+		音乐名:<input type="text" name="mp3Name" ><br>
+		网易云音乐ID:<input type="number" name="mp3Id" value="514055481"><br>
+		<input type="submit" value="下载">
+	</form>
+	<hr>
+	<center>网易云音乐链接:
+	<input type="text" name="mp3url" id="mp3url" value="https://music.163.com/song?id=514055481&userid=260081584"
+		oninput="two()" style="width: 500px"/><br>
+	<a href="http://music.163.com/song/media/outer/url?id=571338279.mp3"
+		download="music.mp3" id="down">下载</a></center>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+	function one(){
+		if($("[name=mp3Name]").val()==''){
+			alert("音乐名不能为空!");
+			return false;
+		}
+		if($("[name=mp3Id]").val()==''){
+			alert("音乐ID不能为空!");
+			return false;
+		}
+		return true;
+	}
+	function two() {
+		var mp3url = $("#mp3url").val(); //https://music.163.com/song?id=514055481&userid=260081584
+		var mp3Id = (mp3url.split("song?id=")[1]).split("&userid")[0]
+		console.log(mp3Id)
+		$("#down").attr("href", "http://music.163.com/song/media/outer/url?id=" + mp3Id + ".mp3");
+	}
+</script>
+</html>

@@ -1,0 +1,71 @@
+server:
+  port: 8080
+  context-path: /wudada
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-post-size: 8192
+  max-http-header-size: 8192
+
+spring:
+  profiles:
+    active:
+    #- test    #测试环境
+    #- dev     #开发环境
+    - prod    #生产环境
+    - redis   #redis配置
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/wudada?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    mode: HTML
+    encoding: UTF-8
+    content-type: text/html
+    #suffix: .html  #thymeleaf默认.html 可不写
+  #resources:         #静态资源路径
+    #static-locations:
+    #- classpath:/static/
+    #- classpath:/templates/
+  
+  #发送邮件配置  
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com       #服务器地址
+    port: 465        #端口
+    protocol: smtp    #协议
+    username: 2315504505@qq.com    #账号2315504505@qq.com
+    password: eajmwmjbswsueadd    #密码
+    properties:                #SSL认证
+      mail: 
+        smtp:
+          auth: true
+          socketFactory: 
+            class: javax.net.ssl.SSLSocketFactory
+          ssl: 
+            enable: true
+  
+  http:
+    multipart:
+      max-file-size: 100MB        #最大文件上传大小
+      max-request-size: 100MB    #最大请求大小
+#配置mybatis xml地址
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    com:
+      java:
+        dao: debug      #输出sql
+######################################################      
+#自定义属性
+mail:
+  username: 2315504505@qq.com
+
+
