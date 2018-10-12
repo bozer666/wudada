@@ -1,7 +1,7 @@
 package demo1;
 
 import java.security.spec.PSSParameterSpec;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * @author wu
@@ -10,18 +10,22 @@ import java.util.HashMap;
  * @date 2018-9-20 11:18
  */
 public class HashMapDemo {
-    public static void main(String[] args) {
-        int a=1;
-        System.out.println(0000001000001000);
-    }
 
-    public static final int demo(int cap){
-        int n = cap - 1;
-        n |= n >>> 1;
-        n |= n >>> 2;
-        n |= n >>> 4;
-        n |= n >>> 8;
-        n |= n >>> 16;
-        return n;
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<String>(){{
+            add("111");
+            add("222");
+            add("333");
+        }};
+        Iterator<String> it = list.iterator();
+        while(it.hasNext()){
+            String x = it.next();
+            if(x.equals("111")){
+                it.remove();
+            }
+        }
+        list.forEach(s -> System.out.println(s));
+        new Thread(() -> System.out.println("新线程")).start();
+        ArrayList<String> list1 = new ArrayList();
     }
 }

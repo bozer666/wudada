@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.java.model.ThirdPartyUser;
+import com.java.entity.ThirdPartyUser;
 
 /**
  * 第三方登录辅助类

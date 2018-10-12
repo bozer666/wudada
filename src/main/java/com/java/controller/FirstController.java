@@ -5,12 +5,11 @@
  */
 package com.java.controller;
 import javax.servlet.http.HttpServletRequest;
-
 import com.java.util.IpUtil;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /** 
  * @ClassName: FirstController 
@@ -19,12 +18,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date: 2018年6月26日 下午5:07:28  
  */
 @Controller
+@Log
 public class FirstController {
+
 	private static int a = 1;
 	
 	@RequestMapping("/")
-    public String file(HttpServletRequest request){
-		System.out.println("---------第"+(a++)+"个人:"+ IpUtil.getIpAddr(request));
+    public String file(HttpServletRequest request,Model model){
+		log.info("---------第"+(a++)+"个人:"+ IpUtil.getIpAddr(request));
         return "index"; 
     }
 	
@@ -36,7 +37,7 @@ public class FirstController {
         return "file";
     }
 	
-	@RequestMapping("/love")
+	@RequestMapping("love")
 	public String index() {
 		return "love";
 	}
@@ -48,13 +49,7 @@ public class FirstController {
     public String multifile(){
         return "multifile";
     }
-    
-    /**
-	 * @Title: pub 
-	 * @Description: TODO  void
-	 * @author wujb
-	 * @date 2018年6月28日上午10:30:55
-	 */
+
     @RequestMapping("music")
 	public String music() {
 		return "musicdownload";
@@ -71,7 +66,7 @@ public class FirstController {
    	}
     
     @RequestMapping("ygdbns")
-   	public String ygdbns(Model model) {
+   	public String ygdbns() {
    		return "一个都不能死";
    	}
     
@@ -84,10 +79,4 @@ public class FirstController {
    	public String zkdz() {
    		return "砖块堆栈";
    	}
-
-   	@RequestMapping("test")
-	@ResponseBody
-	public String setA(String a) {
-		return a;
-	}
 }

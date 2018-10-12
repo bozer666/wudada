@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 /** 
  * @ClassName: MyRunner 
  * @Description: TODO
- * @author: wujb
+ * @author: wu
  * @date: 2018年7月24日 下午4:07:04  
  */
 @Component

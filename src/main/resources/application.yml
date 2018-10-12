@@ -1,17 +1,19 @@
 server:
+  servlet:
+    context-path: /wudada
   port: 8080
-  context-path: /wudada
   tomcat:
     uri-encoding: UTF-8
     max-http-post-size: 8192
   max-http-header-size: 8192
 
+
 spring:
   profiles:
     active:
     #- test    #测试环境
-    #- dev     #开发环境
-    - prod    #生产环境
+    - dev     #开发环境
+    #- prod    #生产环境
     - redis   #redis配置
 
   datasource:
@@ -26,13 +28,14 @@ spring:
     prefix: classpath:/templates/
     mode: HTML
     encoding: UTF-8
-    content-type: text/html
+    servlet:
+      content-type: text/html
     #suffix: .html  #thymeleaf默认.html 可不写
   #resources:         #静态资源路径
     #static-locations:
     #- classpath:/static/
     #- classpath:/templates/
-  
+
   #发送邮件配置  
   mail:
     default-encoding: UTF-8
@@ -49,20 +52,29 @@ spring:
             class: javax.net.ssl.SSLSocketFactory
           ssl: 
             enable: true
-  
-  http:
+  servlet:
     multipart:
       max-file-size: 100MB        #最大文件上传大小
       max-request-size: 100MB    #最大请求大小
-#配置mybatis xml地址
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
 
-logging:
-  level:
-    com:
-      java:
-        dao: debug      #输出sql
+  #配置热部署是否开启
+  devtools:
+    restart:
+      enabled: false
+
+#配置mybatis xml地址
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#logging:
+#  level:
+#    com:
+#      java:
+#        dao: debug      #输出sql
+
+
 ######################################################      
 #自定义属性
 mail:

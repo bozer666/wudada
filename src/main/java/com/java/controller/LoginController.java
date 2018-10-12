@@ -1,7 +1,7 @@
 package com.java.controller;
 
 import com.java.config.QQLoginProperties;
-import com.java.model.ThirdPartyUser;
+import com.java.entity.ThirdPartyUser;
 import com.java.utils.QQLoginHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

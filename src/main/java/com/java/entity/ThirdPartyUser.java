@@ -1,7 +1,7 @@
 /**
  * 第三方用户实体类
  */
-package com.java.model;
+package com.java.entity;
 
 
 /**

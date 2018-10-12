@@ -1,40 +1,54 @@
 /**    
  * @Package: com.java 
- * @author: wujb   
+ * @author: wu
  * @date: 2018年6月26日 下午5:06:00 
  */
 package com.java;
 
-import org.apache.catalina.Context;
-import org.apache.catalina.connector.Connector;
-import org.apache.tomcat.util.descriptor.web.SecurityCollection;
-import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import lombok.extern.java.Log;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @ClassName: WuApplication
+ * @ClassName: Application
  * @Description: TODO
- * @author: wujb
+ * 	 ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　　┣┓
+ * 　　┃　　　　　　　┏┛
+ * 　　┗┓┓┏━┳┓┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @author: wu
  * @date: 2018年6月26日 下午5:06:00
  */
 @SpringBootApplication
-@ServletComponentScan
+//@ServletComponentScan
 @EnableScheduling
-@EnableCaching
-@MapperScan("com.java.dao")
+@EnableCaching       //开启缓存
+@MapperScan("com.java.mapper")
+@EnableAsync    //开启异步多线程
+@Log
+@EnableTransactionManagement  //事务
 public class WuApplication extends SpringBootServletInitializer {
 
 	/**
@@ -42,43 +56,17 @@ public class WuApplication extends SpringBootServletInitializer {
 	 * @Description: TODO
 	 * @param args
 	 *            void
-	 * @author wujb
+	 * @author wu
 	 * @date 2018年6月26日下午5:06:00
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(WuApplication.class, args);
+		log.info("========================SpringBoot启动完毕==========================");
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(WuApplication.class);
 	}
-/*
-	@Bean
-	public EmbeddedServletContainerFactory servletContainer() {
-		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
-			@Override
-			protected void postProcessContext(Context context) {
-				SecurityConstraint securityConstraint = new SecurityConstraint();
-				securityConstraint.setUserConstraint("CONFIDENTIAL");// confidential
-				SecurityCollection collection = new SecurityCollection();
-				collection.addPattern("/*");
-				securityConstraint.addCollection(collection);
-				context.addConstraint(securityConstraint);
-			}
-		};
-		tomcat.addAdditionalTomcatConnectors(httpConnector());
-		return tomcat;
-	}
-
-	@Bean
-	public Connector httpConnector() {
-		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-		connector.setScheme("http");
-		connector.setPort(9999);
-		connector.setSecure(false);
-		connector.setRedirectPort(9998);
-		return connector;
-	}*/
 
 }

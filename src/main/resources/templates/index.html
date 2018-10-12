@@ -7,7 +7,7 @@
 </head>
 <body>
 	<input th:if="${session.user}==null" type="image" src="/images/qqLogin/Connect_logo_4.png"
-		id="qqLogin" onclick="javascript:location.href='https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101499742&redirect_uri=http://www.iremember.club/login/afterLogin&state=1'">
+		id="qqLogin" onclick="login()">
 
 	<div th:if="${session.user}!=null">
 		<ul>
@@ -18,8 +18,17 @@
 			<li>头像:<img th:src="${session.user.avatarUrl}"/> </li>
 		</ul>
 	</div>
-	<button th:if="${session.user}!=null" onclick="javascript:location.href='http://www.iremember.club/login/loginout'">注销</button>
+	<button th:if="${session.user}!=null" onclick="loginout()">注销</button>
+
 	<center style="color: red; font-size: 200px;">Hello~~</center>
 
 </body>
+<script type="text/javascript">
+	function login(){
+	    location.href='https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101499742&redirect_uri=http://www.iremember.club/login/afterLogin&state=1';
+	}
+	function loginout(){
+        location.href='http://www.iremember.club/login/loginout';
+	}
+</script>
 </html>
