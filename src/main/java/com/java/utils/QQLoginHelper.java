@@ -35,9 +35,6 @@ public final class QQLoginHelper {
 		params.put("client_secret",clientSecret);
 		params.put("code",code);
 		params.put("redirect_uri",redirectUrl);
-		/*tokenUrl = tokenUrl + "?grant_type="+grantType+"&client_id=" + clientId
-				+ "&client_secret=" + clientSecret + "&code=" + code
-				+ "&redirect_uri="+redirectUrl;*/
 		String tokenRes = HttpUtils.get(tokenUrl,params);
 		if (tokenRes != null && tokenRes.indexOf("access_token") > -1) {
 			Map<String, String> tokenMap = toMap(tokenRes);
@@ -53,7 +50,7 @@ public final class QQLoginHelper {
 			map.put("openId", openidObj.getString("openid"));
 			System.out.println("-------openid:"+openidObj.getString("openid"));
 		} else {
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("获取token失败");
 		}
 		return map;
 	}

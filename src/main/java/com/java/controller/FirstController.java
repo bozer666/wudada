@@ -4,12 +4,13 @@
  * @date: 2018年6月26日 下午5:07:28 
  */
 package com.java.controller;
-import javax.servlet.http.HttpServletRequest;
 import com.java.util.IpUtil;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /** 
  * @ClassName: FirstController 
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date: 2018年6月26日 下午5:07:28  
  */
 @Controller
-@Log
+@Log4j2
 public class FirstController {
 
 	private static int a = 1;
