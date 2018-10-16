@@ -65,10 +65,13 @@ spring:
 #配置mybatis xml地址
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #别名
   type-aliases-package: com.java.entity
+  configuration:
+    #打印sql和查询结果
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
+    #xml热加载
     refresh: true
 
 

@@ -16,13 +16,11 @@
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.po.TableFill;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
@@ -67,6 +65,7 @@ public class MysqlGenerator {
                 //.setKotlin(true) 是否生成 kotlin 代码
             // 自定义文件命名，注意 %s 会自动填充表实体属性！
             // .setEntityName("%sEntity");
+                .setOpen(true).setEnableCache(false)
             // .setMapperName("%sDao")
             // .setXmlName("%sDao")
             // .setServiceName("MP%sService")

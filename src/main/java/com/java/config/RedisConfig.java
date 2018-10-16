@@ -14,7 +14,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * @author wu
- * @Description:
+ * @Description: redis配置类
  * @Title: RedisConfig
  * @date 2018-9-20 16:40
  */
@@ -27,16 +27,16 @@ public class RedisConfig {
     @Bean
     public KeyGenerator keyGenerator() {
         return new KeyGenerator(){
-         @Override
-          public Object generate(Object target, java.lang.reflect.Method method, Object... params) {
-            StringBuffer sb = new StringBuffer();
-            sb.append(target.getClass().getName());
-            sb.append(method.getName());
-            for(Object obj:params){
-              sb.append(obj.toString());
+            @Override
+            public Object generate(Object target, java.lang.reflect.Method method, Object... params) {
+                StringBuffer sb = new StringBuffer();
+                sb.append(target.getClass().getName());
+                sb.append(method.getName());
+                for(Object obj:params){
+                    sb.append(obj.toString());
+                }
+                return sb.toString();
             }
-            return sb.toString();
-          }
         };
     }
 

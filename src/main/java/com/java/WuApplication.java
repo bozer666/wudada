@@ -5,12 +5,11 @@
  */
 package com.java;
 
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -47,7 +46,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableCaching       //开启缓存
 @MapperScan("com.java.mapper")
 @EnableAsync    //开启异步多线程
-@Log
+@Log4j2
 @EnableTransactionManagement  //事务
 public class WuApplication extends SpringBootServletInitializer {
 

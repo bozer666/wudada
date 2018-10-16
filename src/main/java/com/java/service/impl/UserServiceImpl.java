@@ -1,9 +1,11 @@
 package com.java.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.java.entity.User;
 import com.java.mapper.UserMapper;
 import com.java.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +18,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+    @Autowired
+    private UserMapper userMapper;
 
+    @Cacheable(value = "user",keyGenerator = "keyGenerator")
+    @Override
+    public User selectOneUser() {
+        return userMapper.selectOneUser();
+    }
 }
