@@ -1,8 +1,9 @@
 package com.java.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author wu
- * @since 2018-10-12
+ * @since 2018-10-17
  */
 public class User extends Model<User> {
 
@@ -20,7 +21,7 @@ public class User extends Model<User> {
     /**
      * 主键ID
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
@@ -37,6 +38,11 @@ public class User extends Model<User> {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createDate;
 
     public Long getId() {
         return id;
@@ -66,6 +72,13 @@ public class User extends Model<User> {
     public void setEmail(String email) {
         this.email = email;
     }
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
 
     @Override
     protected Serializable pkVal() {
@@ -79,6 +92,7 @@ public class User extends Model<User> {
         ", name=" + name +
         ", age=" + age +
         ", email=" + email +
+        ", createDate=" + createDate +
         "}";
     }
 }

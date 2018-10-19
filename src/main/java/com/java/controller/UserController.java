@@ -7,9 +7,8 @@ import com.java.entity.User;
 import com.java.service.IUserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -48,6 +47,21 @@ public class UserController {
         User user = userService.selectOneUser();
         Long end = System.currentTimeMillis();
         log.info("查询消耗时间:"+(end-start)+"ms");
+        return user;
+    }
+
+
+    @RequestMapping("insertUser")
+    @ResponseBody
+    public Object insertUserOne(User user){
+        userService.insertUserOne(user);
+        return user;
+    }
+
+    @RequestMapping("updateUser")
+    @ResponseBody
+    public Object updateUser(User user){
+        user.updateById();
         return user;
     }
 }

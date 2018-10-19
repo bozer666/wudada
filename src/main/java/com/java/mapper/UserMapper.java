@@ -14,4 +14,6 @@ import com.java.entity.User;
 public interface UserMapper extends BaseMapper<User> {
 
     User selectOneUser();
+
+    Integer insertUserOne(User user);
 }

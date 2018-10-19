@@ -49,6 +49,7 @@ public class MysqlGenerator {
         tableFillList.add(new TableFill("ASDD_SS", FieldFill.INSERT_UPDATE));
 
         String projectPath = System.getProperty("user.dir");
+        projectPath = "E:/";
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator().setGlobalConfig(
             // 全局配置
