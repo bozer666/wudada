@@ -19,7 +19,7 @@ import com.java.config.Config;
 @Component
 public class MailUtil {
 	
-	/**
+    /**
      *  发送邮件
      * @Title: sendMail 
      * @param emailTo  接受者邮箱
@@ -30,18 +30,18 @@ public class MailUtil {
      * @date 2018年7月20日下午5:16:02
      */
     public static String sendEmail(String emailTo,String emailSubject,String emailText) throws Exception {
-            // 建立邮件消息
-            SimpleMailMessage mainMessage = new SimpleMailMessage();
-            // 发送者
-            mainMessage.setFrom(username);
-            // 接收者
-            mainMessage.setTo(emailTo);
-            // 发送的标题
-            mainMessage.setSubject(emailSubject);
-            // 发送的内容
-            mainMessage.setText(emailText);
-            jms.send(mainMessage);
-            return "success";
+	// 建立邮件消息
+	SimpleMailMessage mainMessage = new SimpleMailMessage();
+	// 发送者
+	mainMessage.setFrom(username);
+	// 接收者
+	mainMessage.setTo(emailTo);
+	// 发送的标题
+	mainMessage.setSubject(emailSubject);
+	// 发送的内容
+	mainMessage.setText(emailText);
+	jms.send(mainMessage);
+	return "success";
     }
 	
     /**
