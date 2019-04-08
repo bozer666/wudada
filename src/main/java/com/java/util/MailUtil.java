@@ -19,44 +19,49 @@ import com.java.config.Config;
 @Component
 public class MailUtil {
 	
-	@Autowired
-	private JavaMailSender jms;
-	
-	private static MailUtil mailUtil;
-	
-	@Value("${spring.mail.username}")
-	private String username;
-	
-	@PostConstruct
-	public void inti() {
-		mailUtil=this;
-		mailUtil.jms=this.jms;
-	}
-	
 	/**
-	 *  发送邮件
-	 * @Title: sendMail 
-	 * @param from 发送者邮箱
-	 * @param to  接受者邮箱
-	 * @param subject  邮件标题
-	 * @param text  邮件内容
-	 * @return String  返回发送状态
-	 * @author wu
-	 * @date 2018年7月20日下午5:16:02
-	 */
-	public static String sendMail(String to,String subject,String text) throws Exception {
-			// 建立邮件消息
-			SimpleMailMessage mainMessage = new SimpleMailMessage();
-			// 发送者
-			mainMessage.setFrom(mailUtil.username);
-			// 接收者
-			mainMessage.setTo(to);
-			// 发送的标题
-			mainMessage.setSubject(subject);
-			// 发送的内容
-			mainMessage.setText(text);
-			mailUtil.jms.send(mainMessage);
-			return "success";
-	}
+     *  发送邮件
+     * @Title: sendMail 
+     * @param emailTo  接受者邮箱
+     * @param emailSubject  邮件标题
+     * @param emailText  邮件内容
+     * @return String  返回发送状态
+     * @author wu
+     * @date 2018年7月20日下午5:16:02
+     */
+    public static String sendEmail(String emailTo,String emailSubject,String emailText) throws Exception {
+            // 建立邮件消息
+            SimpleMailMessage mainMessage = new SimpleMailMessage();
+            // 发送者
+            mainMessage.setFrom(username);
+            // 接收者
+            mainMessage.setTo(emailTo);
+            // 发送的标题
+            mainMessage.setSubject(emailSubject);
+            // 发送的内容
+            mainMessage.setText(emailText);
+            jms.send(mainMessage);
+            return "success";
+    }
+	
+    /**
+     * 邮件发送对象
+     */
+    public static JavaMailSender jms;
+    
+    /**
+     * 发送者
+     */
+    public static String username;
+    
+    @Autowired
+    public void setJms(JavaMailSender jms) {
+        this.jms = jms;
+    }
+    
+    @Value("${spring.mail.username}")
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
 }
